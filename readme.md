@@ -9,14 +9,14 @@ Client e secret sono nel `.env`.
 
 URL:
 
-- Richiesta token: `http://localhost:3000/oauth/token`
-- Endpoint protetto: `http://localhost:3000/api/protected`
+- Richiesta token: `https://express-oauth-6949146071ae.herokuapp.com/oauth/token`
+- Endpoint protetto: `https://express-oauth-6949146071ae.herokuapp.com/api/protected`
 
 # Richiedere un token
 
 Occhio che e' configurato per avere il payload nel body (se usi postman, va settato esplicitamente).
 
-curl -X POST http://localhost:3000/oauth/token -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=client_credentials&client_id=client1&client_secret=secret1"
+curl -X POST https://express-oauth-6949146071ae.herokuapp.com/oauth/token -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=client_credentials&client_id=client1&client_secret=secret1"
 
 # Chiamata protetta
 
