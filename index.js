@@ -97,6 +97,18 @@ app.post(
     console.log("QUERY: ", req.query);
     next();
   },
+  (req, res, next) => {
+    // Check for Basic Auth header
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Basic ')) {
+      const base64Credentials = authHeader.split(' ')[1];
+      const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
+      const [clientId, clientSecret] = credentials.split(':');
+      req.body.client_id = clientId;
+      req.body.client_secret = clientSecret;
+    }
+    next();
+  },
   passport.authenticate(["oauth2-client-password"], { session: false }),
   (req, res, next) => {
     console.log("DEBUG: Client authenticated successfully");
